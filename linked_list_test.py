@@ -59,3 +59,8 @@ def test_iteration():
     l = LinkedList(0, 1, 2, 3)
     for i, x in enumerate(l):
         assert i == x
+
+
+def test_allows_none_as_element():
+    assert LinkedList().prepend(None).head == None
+    assert LinkedList(1, 2, None, 3).drop(2).tail == LinkedList(3)
