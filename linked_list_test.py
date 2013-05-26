@@ -41,6 +41,10 @@ def test_concatenate():
     assert LinkedList(1, 2).concat(LinkedList(3, 4)) == LinkedList(1, 2, 3, 4)
 
 
+def test_take():
+    assert LinkedList(1, 2, 3, 4).take(2) == LinkedList(1, 2)
+
+
 def test_drop():
     assert LinkedList(1, 2, 3).drop(1) == LinkedList(2, 3)
     assert LinkedList(1, 2, 3, 4).drop(2) == LinkedList(3, 4)
@@ -49,3 +53,9 @@ def test_drop():
 def test_indexing():
     assert LinkedList(1, 2, 3)[0] == 1
     assert LinkedList(1, 2, 3)[2] == 3
+
+
+def test_iteration():
+    l = LinkedList(0, 1, 2, 3)
+    for i, x in enumerate(l):
+        assert i == x

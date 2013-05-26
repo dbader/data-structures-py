@@ -30,7 +30,7 @@ class LinkedList:
             return False
         return self.items == other.items
 
-    def __str__(self):
+    def __unicode__(self):
         def stringify(xs):
             if xs.is_empty:
                 return ''
@@ -40,13 +40,19 @@ class LinkedList:
                 return str(xs.head) + ', ' + stringify(xs.tail)
         return '[' + stringify(self) + ']'
 
-    __repr__ = __str__
+    __repr__ = __unicode__
 
     def __getitem__(self, index):
         return self.apply(index)
 
     def __len__(self):
         return self.length
+
+    def __iter__(self):
+        iter_list = self
+        while not iter_list.is_empty:
+            yield iter_list.head
+            iter_list = iter_list.tail
 
     @property
     def head(self):
@@ -85,6 +91,14 @@ class LinkedList:
             else:
                 return LinkedList.cons(xs[0], __cc(xs[1], ys))
         return self.from_cons(__cc(self.items, xs.items))
+
+    def take(self, n):
+        def __tt(n, xs):
+            if n == 0:
+                return LinkedList.Nil
+            else:
+                return LinkedList.cons(xs[0], __tt(n - 1, xs[1]))
+        return self.from_cons(__tt(n, self.items))
 
     def drop(self, n):
         if n == 0:
