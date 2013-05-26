@@ -17,3 +17,24 @@ def test_is_empty():
 def test_length():
     assert LinkedList().length == 0
     assert LinkedList(1, 2, 3, 4, 5).length == 5
+
+
+def test_to_string():
+    assert str(LinkedList()) == '[]'
+    assert str(LinkedList(1, 2, 3)) == '[1, 2, 3]'
+
+
+def test_prepend():
+    assert LinkedList(2, 3).prepend(1) == LinkedList(1, 2, 3)
+
+
+def test_append():
+    assert LinkedList().append(1) == LinkedList(1)
+    assert LinkedList(1, 2).append(3) == LinkedList(1, 2, 3)
+
+
+def test_concatenate():
+    assert LinkedList().concat(LinkedList()) == LinkedList()
+    assert LinkedList().concat(LinkedList(1)) == LinkedList(1)
+    assert LinkedList(1).concat(LinkedList(2)) == LinkedList(1, 2)
+    assert LinkedList(1, 2).concat(LinkedList(3, 4)) == LinkedList(1, 2, 3, 4)
