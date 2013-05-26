@@ -1,6 +1,10 @@
 from linked_list import LinkedList
 
 
+class UnderflowException(Exception):
+    pass
+
+
 class Stack:
     def __init__(self):
         self.items = LinkedList()
@@ -22,4 +26,7 @@ class Stack:
 
     def peek(self):
         """O(1)"""
-        return self.items.head
+        if self.is_empty:
+            raise UnderflowException
+        else:
+            return self.items.head

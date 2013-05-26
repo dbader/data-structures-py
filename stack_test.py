@@ -1,4 +1,5 @@
-from stack import Stack
+import pytest
+from stack import Stack, UnderflowException
 
 
 def test_push_pop():
@@ -17,3 +18,8 @@ def test_peek():
     s.push(1)
     assert s.peek() == 1
     assert s.pop() == 1
+
+
+def test_underflow_throws():
+    with pytest.raises(UnderflowException):
+        Stack().pop()
