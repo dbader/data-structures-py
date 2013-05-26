@@ -1,4 +1,4 @@
-#pylint: disable=W0142
+#pylint: disable=W0142, R0924
 
 
 class LinkedList:
@@ -42,6 +42,12 @@ class LinkedList:
 
     __repr__ = __str__
 
+    def __getitem__(self, index):
+        return self.apply(index)
+
+    def __len__(self):
+        return self.length
+
     @property
     def head(self):
         return self.items[0]
@@ -79,3 +85,12 @@ class LinkedList:
             else:
                 return LinkedList.cons(xs[0], __cc(xs[1], ys))
         return self.from_cons(__cc(self.items, xs.items))
+
+    def drop(self, n):
+        if n == 0:
+            return self
+        else:
+            return self.tail.drop(n - 1)
+
+    def apply(self, index):
+        return self.drop(index).head

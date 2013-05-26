@@ -17,6 +17,7 @@ def test_is_empty():
 def test_length():
     assert LinkedList().length == 0
     assert LinkedList(1, 2, 3, 4, 5).length == 5
+    assert len(LinkedList(1, 2, 3, 4, 5)) == 5
 
 
 def test_to_string():
@@ -38,3 +39,13 @@ def test_concatenate():
     assert LinkedList().concat(LinkedList(1)) == LinkedList(1)
     assert LinkedList(1).concat(LinkedList(2)) == LinkedList(1, 2)
     assert LinkedList(1, 2).concat(LinkedList(3, 4)) == LinkedList(1, 2, 3, 4)
+
+
+def test_drop():
+    assert LinkedList(1, 2, 3).drop(1) == LinkedList(2, 3)
+    assert LinkedList(1, 2, 3, 4).drop(2) == LinkedList(3, 4)
+
+
+def test_indexing():
+    assert LinkedList(1, 2, 3)[0] == 1
+    assert LinkedList(1, 2, 3)[2] == 3
