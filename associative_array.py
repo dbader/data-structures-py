@@ -13,7 +13,7 @@ class AssociativeArray:
 
     __repr__ = __unicode__
 
-    def set(self, key, value):
+    def put(self, key, value):
         for i, kv in enumerate(self.items):
             if kv[0] == key:
                 l1 = self.items.take(i)
@@ -26,3 +26,37 @@ class AssociativeArray:
         for k, v in self.items:
             if k == key:
                 return v
+
+
+class HashMap:
+    def __init__(self):
+        self.buckets = [list() for _ in range(64)]
+
+    def __unicode__(self):
+        def flattened(xs):
+            return (item for sublist in xs for item in sublist)
+
+        s = ''
+        for key, value in flattened(self.buckets):
+            s += repr(key) + ': ' + repr(value) + ', '
+        return '{' + s + '}'
+
+    __repr__ = __unicode__
+
+    def __get_bucket(self, key):
+        return self.buckets[hash(key) % len(self.buckets)]
+
+    def put(self, key, value):
+        bucket = self.__get_bucket(key)
+        for item in bucket:
+            if item[0] == key:
+                item[1] = value
+                return
+        bucket.append([key, value])
+
+    def get(self, key):
+        bucket = self.__get_bucket(key)
+        for item in bucket:
+            if item[0] == key:
+                return item[1]
+        return None
