@@ -55,6 +55,10 @@ class HashMap:
         bucket.append([key, value])
 
     def get(self, key):
+        """Avg complexity for a lookup with k buckets and n items:
+            Number of collisions: min(0, n - k)
+            Avg number of collisions per bucket: n / k
+            -> O(n/k) search on average for each get()"""
         bucket = self.__get_bucket(key)
         for item in bucket:
             if item[0] == key:
