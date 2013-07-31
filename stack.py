@@ -9,6 +9,9 @@ class Stack:
     def __init__(self):
         self.items = LinkedList()
 
+    def __str__(self):
+        return str(self.items)
+
     @property
     def is_empty(self):
         """O(1)"""
