@@ -1,6 +1,7 @@
 import random
 from tree import Tree, BinarySearchTree
 
+
 def test_tree():
     t = Tree.from_list([
         'a', 1, [
@@ -34,3 +35,12 @@ def test_BST():
         assert t.find_recursive(t.root, val) == val ** 2
     assert t.min() == 0
     assert t.max() == 99
+
+
+def test_BST_traversal():
+    t = BinarySearchTree()
+    for i, key in enumerate("ASERCHINGXMPL"):
+        t.insert(key, i)
+    assert t.traverse_preorder() == list("ASECRHGINMLPX")
+    assert t.traverse_inorder() == list("ACEGHILMNPRSX")
+    assert t.traverse_postorder() == list("CGLMPNIHREXSA")

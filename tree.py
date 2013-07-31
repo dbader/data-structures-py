@@ -156,3 +156,35 @@ class BinarySearchTree:
             if node.right is None:
                 return node.key
             node = node.right
+
+    def traverse_preorder(self, node=None):
+        if node is None:
+            node = self.root
+        visited = [node.key]
+        if node.left:
+            visited += self.traverse_preorder(node.left)
+        if node.right:
+            visited += self.traverse_preorder(node.right)
+        return visited
+
+    def traverse_inorder(self, node=None):
+        if node is None:
+            node = self.root
+        visited = []
+        if node.left:
+            visited += self.traverse_inorder(node.left)
+        visited += [node.key]
+        if node.right:
+            visited += self.traverse_inorder(node.right)
+        return visited
+
+    def traverse_postorder(self, node=None):
+        if node is None:
+            node = self.root
+        visited = []
+        if node.left:
+            visited += self.traverse_postorder(node.left)
+        if node.right:
+            visited += self.traverse_postorder(node.right)
+        visited += [node.key]
+        return visited
