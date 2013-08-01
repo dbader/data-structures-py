@@ -33,6 +33,14 @@ class Tree:
     def insert(self, key, value):
         pass
 
+    def height(self):
+        def _height(node):
+            if not node.children:
+                return 1
+            else:
+                return 1 + max(_height(_) for _ in node.children)
+        return _height(self.root)
+
     def dfs(self, key):
         """Depth-first search for a given key. O(|nodes|)
         Pros:
@@ -156,6 +164,14 @@ class BinarySearchTree:
             if node.right is None:
                 return node.key
             node = node.right
+
+    def height(self):
+        def _height(node):
+            if node is None:
+                return 0
+            else:
+                return 1 + max(_height(node.left), _height(node.right))
+        return _height(self.root)
 
     def traverse_preorder(self, node=None):
         if node is None:

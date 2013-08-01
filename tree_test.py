@@ -16,6 +16,7 @@ def test_tree():
             ['e', 5, [
             ]]
     ]])
+    assert t.height() == 4
     assert t.dfs('e') == 5
     assert t.dfs('d') == 4
     assert t.dfs_recursive(t.root, 'd') == 4
@@ -41,6 +42,7 @@ def test_BST_traversal():
     t = BinarySearchTree()
     for i, key in enumerate("ASERCHINGXMPL"):
         t.insert(key, i)
+    assert t.height() == 9
     assert t.traverse_preorder() == list("ASECRHGINMLPX")
     assert t.traverse_inorder() == list("ACEGHILMNPRSX")
     assert t.traverse_postorder() == list("CGLMPNIHREXSA")
