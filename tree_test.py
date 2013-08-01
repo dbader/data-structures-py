@@ -46,3 +46,4 @@ def test_BST_traversal():
     assert t.traverse_preorder() == list("ASECRHGINMLPX")
     assert t.traverse_inorder() == list("ACEGHILMNPRSX")
     assert t.traverse_postorder() == list("CGLMPNIHREXSA")
+    assert t.traverse_preorder_stack() == list("ASECRHGINMLPX")

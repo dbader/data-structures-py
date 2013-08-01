@@ -204,3 +204,19 @@ class BinarySearchTree:
             visited += self.traverse_postorder(node.right)
         visited += [node.key]
         return visited
+
+    def traverse_preorder_stack(self):
+        nodes = Stack()
+        nodes.push(self.root)
+        visited = []
+        while not nodes.is_empty:
+            node = nodes.pop()
+            visited += [node.key]
+            # Push the right node first, then the left node
+            # to visit them in the correct order (left, right)
+            # for a preorder traversal.
+            if node.right:
+                nodes.push(node.right)
+            if node.left:
+                nodes.push(node.left)
+        return visited
