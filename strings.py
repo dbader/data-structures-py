@@ -98,5 +98,4 @@ def reverse_words_inplace(s):
             # Now reverse it in place it over.
             reverse_inplace(s, word_start, word_end)
             word_start, word_end = None, None
-    print()
     return s.tounicode()
